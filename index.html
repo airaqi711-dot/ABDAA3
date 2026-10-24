@@ -5,7 +5,10 @@
 <section id="cartPage" class="hidden"><h2>سلة المشتريات</h2><div class="panel" id="cartItems"></div><div class="panel"><div class="totals"><span>مجموع المنتجات</span><span id="cartSubtotal"></span></div><div class="totals"><span>التوصيل</span><span id="cartDelivery"></span></div><div class="totals"><span>الإجمالي</span><span id="cartTotal"></span></div><button id="checkoutBtn">متابعة إلى تفاصيل التوصيل</button></div></section>
 <section id="checkoutPage" class="hidden"><h2>إتمام الطلب</h2><div class="steps"><div class="step on"><b>1</b>تفاصيل التوصيل</div><div class="step"><b>2</b>مراجعة الطلب</div><div class="step"><b>3</b>تم التأكيد</div></div><form id="checkoutForm" class="panel"><div class="formGrid"><label class="field">اسم الزبون *<input name="name" required minlength="2" maxlength="120"></label><label class="field">رقم الهاتف العراقي *<input name="phone" type="tel" required pattern="[0-9+ -]{10,20}" placeholder="07xxxxxxxxx"></label><label class="field">المحافظة *<select name="province" required><option value="">اختر المحافظة</option></select></label><label class="field">المدينة / المنطقة *<input name="district" required minlength="2" maxlength="120"></label><label class="field full">العنوان التفصيلي / أقرب نقطة دالة *<textarea name="address" required minlength="5" maxlength="500"></textarea></label><label class="field full">ملاحظات الطلب (اختياري)<textarea name="notes" maxlength="1000"></textarea></label></div><div class="notice">الدفع عند الاستلام. لا يحتاج الزبون إلى حساب. تأكيد الهاتف برسالة غير مفعّل حالياً.</div><button id="sendOrder" type="submit">مراجعة الطلب</button><div id="checkoutMsg"></div></form><div id="review" class="panel hidden"><h3>مراجعة الطلب قبل الإرسال</h3><div id="reviewDetails"></div><div class="row"><button id="confirmOrder">تأكيد وإرسال الطلب</button><button class="soft" id="editOrder">تعديل التفاصيل</button></div></div></section>
 <section id="donePage" class="hidden"><div class="panel" style="text-align:center;padding:55px 20px"><h1>✅ تم استلام طلبك</h1><p id="doneText"></p><button id="backShop">العودة للمتجر</button></div></section>
-<section id="adminPage" class="hidden"><div id="loginPanel" class="panel"><h2>تسجيل دخول الإدارة</h2><form id="loginForm" class="formGrid"><label class="field">البريد الإلكتروني<input type="email" name="email" required></label><label class="field">كلمة المرور<input type="password" name="password" required></label><div class="full"><button>دخول</button></div></form><div id="loginMsg"></div></div><div id="adminContent" class="hidden"><div class="row" style="justify-content:space-between"><h2>لوحة التحكم</h2><button class="soft" id="logout">تسجيل الخروج</button></div><nav class="adminNav"><button data-tab="overview">نظرة عامة</button><button data-tab="catalog">المنتجات</button><button data-tab="orders">الطلبات</button><button data-tab="settings">إعدادات المتجر</button></nav><div id="overviewTab"><div class="metrics" id="metrics"></div><div class="panel"><h3>آخر الطلبات</h3><div id="recentOrders"></div></div></div><div id="catalogTab" class="hidden"><div class="panel"><h3 id="productFormTitle">إضافة منتج</h3><form id="productForm" class="formGrid"><input type="hidden" name="id"><label class="field">اسم المنتج<input name="name" required maxlength="150"></label><label class="field">السعر بالدينار<input name="price" type="number" min="0" max="100000000" required></label><label class="field">التصنيف<input name="category" required maxlength="80" value="عام"></label><label class="field">رابط صورة المنتج HTTPS<input name="image_url" type="url" placeholder="https://..."></label><label class="field full">وصف المنتج<textarea name="description" maxlength="1000"></textarea></label><label class="field">الحالة<select name="active"><option value="true">معروض</option><option value="false">مخفي</option></select></label><div class="full row"><button>حفظ المنتج</button><button type="button" class="soft" id="clearProduct">منتج جديد</button></div></form><div id="productMsg"></div></div><div class="panel"><h3>قائمة المنتجات</h3><div id="adminProducts"></div></div></div><div id="ordersTab" class="hidden"><div class="panel"><h3>إدارة الطلبات</h3><input class="search" id="orderSearch" placeholder="بحث بالاسم أو الهاتف أو رقم الطلب"><div id="adminOrders"></div></div></div><div id="settingsTab" class="hidden"><div class="panel"><h3>إعدادات المتجر</h3><form id="settingsForm" class="formGrid"><label class="field">اسم المتجر<input name="name" required></label><label class="field">الوصف<input name="subtitle"></label><label class="field">إنستغرام (رابط كامل)<input name="instagram"></label><label class="field">تيك توك (رابط كامل)<input name="tiktok"></label><label class="field">رقم واتساب<input name="whatsapp"></label><label class="field">أجرة التوصيل بالدينار<input type="number" name="delivery_fee" min="0" required></label><div class="full"><button>حفظ الإعدادات</button></div></form><div id="settingsMsg"></div></div></div></div></section>
+<section id="adminPage" class="hidden"><div id="loginPanel" class="panel"><h2>تسجيل دخول الإدارة</h2><form id="loginForm" class="formGrid"><label class="field">البريد الإلكتروني<input type="email" name="email" required></label><label class="field">كلمة المرور<input type="password" name="password" required></label><div class="full"><button>دخول</button></div></form><div id="loginMsg"></div></div><div id="adminContent" class="hidden"><div class="row" style="justify-content:space-between"><h2>لوحة التحكم</h2><button class="soft" id="logout">تسجيل الخروج</button></div><nav class="adminNav"><button data-tab="overview">نظرة عامة</button><button data-tab="catalog">المنتجات</button><button data-tab="orders">الطلبات</button><button data-tab="settings">إعدادات المتجر</button></nav><div id="overviewTab"><div class="metrics" id="metrics"></div><div class="panel"><h3>آخر الطلبات</h3><div id="recentOrders"></div></div></div><div id="catalogTab" class="hidden"><div class="panel"><h3 id="productFormTitle">إضافة منتج</h3><form id="productForm" class="formGrid"><input type="hidden" name="id"><label class="field">اسم المنتج<input name="name" required maxlength="150"></label><label class="field">السعر بالدينار<input name="price" type="number" min="0" max="100000000" required></label><label class="field">التصنيف<input name="category" required maxlength="80" value="عام"><label class="field">
+  رفع صورة المنتج
+  <input type="file" name="product_image" accept="image/jpeg,image/png,image/webp">
+</label><label class="field full">وصف المنتج<textarea name="description" maxlength="1000"></textarea></label><label class="field">الحالة<select name="active"><option value="true">معروض</option><option value="false">مخفي</option></select></label><div class="full row"><button>حفظ المنتج</button><button type="button" class="soft" id="clearProduct">منتج جديد</button></div></form><div id="productMsg"></div></div><div class="panel"><h3>قائمة المنتجات</h3><div id="adminProducts"></div></div></div><div id="ordersTab" class="hidden"><div class="panel"><h3>إدارة الطلبات</h3><input class="search" id="orderSearch" placeholder="بحث بالاسم أو الهاتف أو رقم الطلب"><div id="adminOrders"></div></div></div><div id="settingsTab" class="hidden"><div class="panel"><h3>إعدادات المتجر</h3><form id="settingsForm" class="formGrid"><label class="field">اسم المتجر<input name="name" required></label><label class="field">الوصف<input name="subtitle"></label><label class="field">إنستغرام (رابط كامل)<input name="instagram"></label><label class="field">تيك توك (رابط كامل)<input name="tiktok"></label><label class="field">رقم واتساب<input name="whatsapp"></label><label class="field">أجرة التوصيل بالدينار<input type="number" name="delivery_fee" min="0" required></label><div class="full"><button>حفظ الإعدادات</button></div></form><div id="settingsMsg"></div></div></div></div></section>
 </main><footer class="footer">© الإبداع للنقش بالليزر</footer><script type="module">
 import {createClient} from 'https://esm.sh/@supabase/supabase-js@2';
 const SUPABASE_URL='https://fqqbqeopisbrcfpjkfad.supabase.co';
@@ -38,9 +41,81 @@ $('loginForm').onsubmit=async e=>{e.preventDefault();const f=new FormData(e.targ
 function tab(t){for(const k of ['overview','catalog','orders','settings'])$(k+'Tab').classList.toggle('hidden',k!==t)}document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>tab(b.dataset.tab));
 async function loadAdmin(){const [p,o,i,c]=await Promise.all([db.from('store_products').select('*').order('created_at',{ascending:false}),db.from('store_orders').select('*').order('created_at',{ascending:false}).limit(500),db.from('store_order_items').select('*').limit(2000),db.from('store_config').select('*').eq('id',1).single()]);if(p.error||o.error||i.error){alert('خطأ في صلاحيات الإدارة: '+(p.error||o.error||i.error).message);return}products=p.data||[];orders=o.data||[];items=i.data||[];if(c.data)config=c.data;renderMetrics();renderAdminProducts();renderOrders();const form=$('settingsForm');for(const key of ['name','subtitle','instagram','tiktok','whatsapp','delivery_fee'])form.elements[key].value=config[key]??''}
 function renderMetrics(){const today=new Date().toDateString(),month=new Date().getMonth(),year=new Date().getFullYear();const paid=orders.filter(o=>o.status!=='ملغي');const stats=[['المنتجات',products.length],['الطلبات',orders.length],['طلبات اليوم',orders.filter(o=>new Date(o.created_at).toDateString()===today).length],['طلبات الشهر',orders.filter(o=>{const d=new Date(o.created_at);return d.getMonth()===month&&d.getFullYear()===year}).length],['قيد الانتظار',orders.filter(o=>o.status==='قيد الانتظار').length],['قيمة الطلبات غير الملغية',money(paid.reduce((s,o)=>s+o.total,0))]];$('metrics').replaceChildren(...stats.map(([name,value])=>{const m=node('div',name);m.className='metric';m.append(node('strong',value));return m}));$('recentOrders').replaceChildren(...orders.slice(0,5).map(o=>node('p','#'+o.id+' — '+o.customer_name+' — '+o.status)))}
-function renderAdminProducts(){const root=$('adminProducts');root.replaceChildren();for(const p of products){const r=node('div','');r.className='cartRow';const name=node('div',p.name+' — '+money(p.price)+(p.active?'':' (مخفي)'));name.className='grow';const edit=node('button','تعديل');edit.className='small soft';edit.onclick=()=>{const f=$('productForm');for(const k of ['id','name','price','category','description','image_url'])f.elements[k].value=p[k]??'';f.elements.active.value=String(p.active);$('productFormTitle').textContent='تعديل منتج';window.scrollTo(0,0)};r.append(name,edit);root.append(r)}}
+function renderAdminProducts(){const root=$('adminProducts');root.replaceChildren();for(const p of products){const r=node('div','');r.className='cartRow';const name=node('div',p.name+' — '+money(p.price)+(p.active?'':' (مخفي)'));name.className='grow';const edit=node('button','تعديل');edit.className='small soft';edit.onclick=()=>{const f=$('productForm');for(const k of ['id','name','price','category','description'])f.elements[k].value=p[k]??'';f.elements.active.value=String(p.active);$('productFormTitle').textContent='تعديل منتج';window.scrollTo(0,0)};r.append(name,edit);root.append(r)}}
 $('clearProduct').onclick=()=>{$('productForm').reset();$('productForm').elements.id.value='';$('productFormTitle').textContent='إضافة منتج'};
-$('productForm').onsubmit=async e=>{e.preventDefault();const f=e.target,record={name:f.elements.name.value.trim(),price:Number(f.elements.price.value),category:f.elements.category.value.trim(),description:f.elements.description.value.trim(),image_url:f.elements.image_url.value.trim()||null,active:f.elements.active.value==='true'};if(record.image_url&&!safeUrl(record.image_url))return msg('productMsg','الصورة تحتاج رابط HTTPS');const id=f.elements.id.value;const r=id?await db.from('store_products').update(record).eq('id',id):await db.from('store_products').insert(record);if(r.error)return msg('productMsg',r.error.message);msg('productMsg','تم حفظ المنتج','success');$('clearProduct').click();await loadAdmin();renderProducts()};
+$('productForm').onsubmit = async e => {
+  e.preventDefault();
+
+  const f = e.target;
+  const id = f.elements.id.value;
+  const file = f.elements.product_image.files[0];
+
+  const record = {
+    name: f.elements.name.value.trim(),
+    price: Number(f.elements.price.value),
+    category: f.elements.category.value.trim(),
+    description: f.elements.description.value.trim(),
+    active: f.elements.active.value === 'true'
+  };
+
+  const button = f.querySelector('button[type="submit"], button:not([type])');
+  button.disabled = true;
+
+  try {
+    if (file) {
+      const extensions = {
+        'image/jpeg': 'jpg',
+        'image/png': 'png',
+        'image/webp': 'webp'
+      };
+
+      if (!extensions[file.type]) {
+        throw new Error('اختار صورة JPG أو PNG أو WEBP');
+      }
+
+      if (file.size > 5 * 1024 * 1024) {
+        throw new Error('حجم الصورة لازم يكون أقل من 5 ميگابايت');
+      }
+
+      msg('productMsg', 'جاري رفع الصورة...', 'success');
+
+      const path = crypto.randomUUID() + '.' + extensions[file.type];
+
+      const { error: uploadError } = await db.storage
+        .from('product-images')
+        .upload(path, file, {
+          contentType: file.type,
+          upsert: false
+        });
+
+      if (uploadError) throw uploadError;
+
+      const { data } = db.storage
+        .from('product-images')
+        .getPublicUrl(path);
+
+      record.image_url = data.publicUrl;
+    } else if (!id) {
+      record.image_url = null;
+    }
+
+    const { error } = id
+      ? await db.from('store_products').update(record).eq('id', id)
+      : await db.from('store_products').insert(record);
+
+    if (error) throw error;
+
+    msg('productMsg', 'تم حفظ المنتج بنجاح', 'success');
+    $('clearProduct').click();
+    await loadAdmin();
+    renderProducts();
+
+  } catch (error) {
+    msg('productMsg', 'حدث خطأ: ' + error.message);
+  } finally {
+    button.disabled = false;
+  }
+};
 function renderOrders(){const q=$('orderSearch').value.trim().toLowerCase(),root=$('adminOrders');root.replaceChildren();for(const o of orders.filter(o=>[o.id,o.customer_name,o.phone].some(v=>String(v).toLowerCase().includes(q)))){const card=node('div','');card.className='orderCard';card.append(node('h3','#'+o.id+' — '+o.customer_name));for(const [label,v] of [['الهاتف',o.phone],['العنوان',o.province+' / '+o.district+' / '+o.address],['الملاحظات',o.notes||'—'],['التاريخ',new Date(o.created_at).toLocaleString('ar-IQ')]])card.append(node('p',label+': '+v));for(const it of items.filter(x=>x.order_id===o.id))card.append(node('p','• '+it.product_name+' × '+it.quantity+' — '+money(it.unit_price*it.quantity)));card.append(node('strong','الإجمالي: '+money(o.total)));const row=node('div','');row.className='row noPrint';const select=document.createElement('select');for(const s of ['قيد الانتظار','مقبول','قيد التجهيز','قيد التوصيل','مكتمل','ملغي'])select.add(new Option(s,s));select.value=o.status;select.onchange=async()=>{const {error}=await db.from('store_orders').update({status:select.value}).eq('id',o.id);if(error){alert(error.message);select.value=o.status}else{o.status=select.value;renderMetrics()}};const print=node('button','طباعة');print.className='small soft';print.onclick=()=>{const w=window.open('','_blank');if(!w)return alert('اسمح بالنوافذ المنبثقة للطباعة');const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));w.document.write('<html dir="rtl"><meta charset="utf-8"><title>وصل الطلب</title><body style="font-family:Tahoma;padding:25px"><h2>'+esc(config.name)+'</h2><h3>طلب #'+esc(o.id)+'</h3><p>'+esc(o.customer_name)+' — '+esc(o.phone)+'</p><p>'+esc(o.province+' / '+o.district+' / '+o.address)+'</p>'+items.filter(x=>x.order_id===o.id).map(x=>'<p>'+esc(x.product_name)+' × '+esc(x.quantity)+' — '+esc(money(x.unit_price*x.quantity))+'</p>').join('')+'<h3>'+esc(money(o.total))+'</h3></body></html>');w.document.close();w.focus();w.print()};const wa=node('button','واتساب');wa.className='small soft';wa.onclick=()=>{let n=o.phone.replace(/\D/g,'');if(n.startsWith('07'))n='964'+n.slice(1);else if(n.startsWith('7'))n='964'+n;window.open('https://wa.me/'+n+'?text='+encodeURIComponent('مرحباً '+o.customer_name+'، طلبك رقم '+o.id+' حالته: '+o.status),'_blank','noopener,noreferrer')};row.append(select,print,wa);card.append(row);root.append(card)}if(!root.children.length)root.append(node('p','لا توجد طلبات'))}
 $('orderSearch').oninput=renderOrders;
 $('settingsForm').onsubmit=async e=>{e.preventDefault();const f=e.target,record={};for(const k of ['name','subtitle','instagram','tiktok','whatsapp'])record[k]=f.elements[k].value.trim();record.delivery_fee=Number(f.elements.delivery_fee.value);for(const k of ['instagram','tiktok'])if(record[k]&&!safeUrl(record[k]))return msg('settingsMsg','رابط '+k+' لازم يكون HTTPS');const {error}=await db.from('store_config').update(record).eq('id',1);if(error)return msg('settingsMsg',error.message);config={...config,...record};applyConfig();msg('settingsMsg','تم حفظ الإعدادات','success')};
