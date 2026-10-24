@@ -41,7 +41,17 @@ $('loginForm').onsubmit=async e=>{e.preventDefault();const f=new FormData(e.targ
 function tab(t){for(const k of ['overview','catalog','orders','settings'])$(k+'Tab').classList.toggle('hidden',k!==t)}document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>tab(b.dataset.tab));
 async function loadAdmin(){const [p,o,i,c]=await Promise.all([db.from('store_products').select('*').order('created_at',{ascending:false}),db.from('store_orders').select('*').order('created_at',{ascending:false}).limit(500),db.from('store_order_items').select('*').limit(2000),db.from('store_config').select('*').eq('id',1).single()]);if(p.error||o.error||i.error){alert('خطأ في صلاحيات الإدارة: '+(p.error||o.error||i.error).message);return}products=p.data||[];orders=o.data||[];items=i.data||[];if(c.data)config=c.data;renderMetrics();renderAdminProducts();renderOrders();const form=$('settingsForm');for(const key of ['name','subtitle','instagram','tiktok','whatsapp','delivery_fee'])form.elements[key].value=config[key]??''}
 function renderMetrics(){const today=new Date().toDateString(),month=new Date().getMonth(),year=new Date().getFullYear();const paid=orders.filter(o=>o.status!=='ملغي');const stats=[['المنتجات',products.length],['الطلبات',orders.length],['طلبات اليوم',orders.filter(o=>new Date(o.created_at).toDateString()===today).length],['طلبات الشهر',orders.filter(o=>{const d=new Date(o.created_at);return d.getMonth()===month&&d.getFullYear()===year}).length],['قيد الانتظار',orders.filter(o=>o.status==='قيد الانتظار').length],['قيمة الطلبات غير الملغية',money(paid.reduce((s,o)=>s+o.total,0))]];$('metrics').replaceChildren(...stats.map(([name,value])=>{const m=node('div',name);m.className='metric';m.append(node('strong',value));return m}));$('recentOrders').replaceChildren(...orders.slice(0,5).map(o=>node('p','#'+o.id+' — '+o.customer_name+' — '+o.status)))}
-function renderAdminProducts(){const root=$('adminProducts');root.replaceChildren();for(const p of products){const r=node('div','');r.className='cartRow';const name=node('div',p.name+' — '+money(p.price)+(p.active?'':' (مخفي)'));name.className='grow';const edit=node('button','تعديل');edit.className='small soft';edit.onclick=()=>{const f=$('productForm');for(const k of ['id','name','price','category','description'])f.elements[k].value=p[k]??'';f.elements.active.value=String(p.active);$('productFormTitle').textContent='تعديل منتج';window.scrollTo(0,0)};r.append(name,edit);root.append(r)}}
+function renderAdminProducts(){const root=$('adminProducts');root.replaceChildren();for(const p of products){const r=node('div','');r.className='cartRow';const name=node('div',p.name+' — '+money(p.price)+(p.active?'':' (مخفي)'));name.className='grow';const edit=node('button','تعديل');edit.className='small soft';edit.onclick=()=>{const f=$('productForm');for(const k of ['id','name','price','category','description'])f.elements[k].value=p[k]??'';f.elements.active.value=String(p.active);$('productFormTitle').textContent='تعديل منتج';window.scrollTo(0,0)}
+const img = document.createElement('img');
+img.src = safeUrl(p.image_url) || './assets/logo.jpg';
+img.alt = p.name;
+img.loading = 'lazy';
+img.onerror = () => {
+  img.onerror = null;
+  img.src = './assets/logo.jpg';
+};
+r.append(img,name,edit);
+root.append(r)}}
 $('clearProduct').onclick=()=>{$('productForm').reset();$('productForm').elements.id.value='';$('productFormTitle').textContent='إضافة منتج'};
 $('productForm').onsubmit = async e => {
   e.preventDefault();
