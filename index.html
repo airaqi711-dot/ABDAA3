@@ -50,7 +50,33 @@ img.onerror = () => {
   img.onerror = null;
   img.src = './assets/logo.jpg';
 };
-r.append(img,name,edit);
+const del = node('button', '🗑️ حذف');
+del.className = 'small danger';
+
+del.onclick = async () => {
+  if (!confirm('متأكد تريد تحذف المنتج: ' + p.name + '؟')) return;
+
+  del.disabled = true;
+
+  const { data, error } = await db
+    .from('store_products')
+    .delete()
+    .eq('id', p.id)
+    .select('id');
+
+  if (error || !data?.length) {
+    alert('تعذر حذف المنتج: ' + (error?.message || 'تحقق من صلاحيات الحذف'));
+    del.disabled = false;
+    return;
+  }
+
+  products = products.filter(x => x.id !== p.id);
+  renderAdminProducts();
+  renderMetrics();
+  alert('تم حذف المنتج بنجاح');
+};
+
+r.append(img,name,edit,del);
 root.append(r)}}
 $('clearProduct').onclick=()=>{$('productForm').reset();$('productForm').elements.id.value='';$('productFormTitle').textContent='إضافة منتج'};
 $('productForm').onsubmit = async e => {
